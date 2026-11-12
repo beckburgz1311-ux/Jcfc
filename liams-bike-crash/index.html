@@ -277,13 +277,13 @@ body{background:radial-gradient(ellipse at 80% -30%,#344e7a 0%,transparent 50%),
         if(s.y+55>bottom-obj.h && s.y-62<bottom+12)hitObstacle(obj);
       }
       const ground=groundY(s.x)-39;
-      if(s.y>=ground && s.vy>0){
+      if(s.y>=ground && s.vy>=0){
         const force=Math.abs(s.vy);
-        s.y=ground;s.groundTimer+=dt;
+        s.y=ground;
         if(wasAir){s.phase='crash';s.crashTime=0;s.bail=true;els.status.textContent=texts.crash;}
         if(force>3.1){
           crashImpact(force);
-          s.vy=-Math.min(13,Math.max(4.2,force*.55));
+          s.vy=-Math.min(13,Math.max(0,force*.53));
           s.vx*=.94;
           s.rotV=clamp(s.rotV+rand(-.05,.13),-.63,.63);
           s.groundTimer=0;
